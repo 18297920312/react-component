@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import './style.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    return (
+        <div className="App">
+           <Son />
+        </div>
+    )
+};
+
+class Son extends React.Component {
+    constructor() {
+        super();
+        this.num = 0;
+    }
+    add() {
+        this.setState(() => this.num += 1);
+    }
+    render() {
+        return (
+            <div className="Son">
+                <button onClick={ () => {this.add()} }>+1</button>
+                {this.num}
+                <Grandson />
+            </div>
+        );
+    } 
 }
+
+const Grandson = function() {
+    const [num,setNum] = React.useState(5);
+    return (
+        <div className="Grandson">
+            <button onClick={() => setNum(num + 2)}>+2</button>
+            {num}
+        </div>
+    );
+
+}
+
 
 export default App;
